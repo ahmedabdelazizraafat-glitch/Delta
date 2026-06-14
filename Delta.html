@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دلتا للتجارة والصناعة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1628;
+    --blue: #1a3a6b;
+    --accent: #2e7dd1;
+    --gold: #c9a84c;
+    --light: #f5f7fa;
+    --white: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    direction: rtl;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .nav-logo {
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none; font-size: 0.9rem; font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1e4d8c 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(46,125,209,0.3) 0%, transparent 60%);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 20px; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    font-size: 1.1rem; color: rgba(255,255,255,0.75);
+    line-height: 1.8; margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .stat { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 900; color: var(--gold); }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+  .btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 36px; border-radius: 8px;
+    font-size: 1rem; font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.4);
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; }
+
+  .section-label {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 3px;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 900; color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--muted); font-size: 1rem;
+    line-height: 1.8; max-width: 600px;
+  }
+
+  /* ABOUT */
+  .about { background: var(--light); }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+
+  .about-features { display: flex; flex-direction: column; gap: 1rem; }
+
+  .feature {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--white);
+    padding: 1.2rem; border-radius: 10px;
+    border-right: 4px solid var(--accent);
+  }
+
+  .feature-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .feature p { font-size: 0.9rem; color: var(--text); font-weight: 600; }
+
+  .about-card {
+    background: var(--navy);
+    border-radius: 16px; padding: 2.5rem;
+    text-align: center; color: var(--white);
+  }
+
+  .about-card h3 {
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+
+  .about-card p { color: rgba(255,255,255,0.75); line-height: 1.8; }
+
+  .iso-badge {
+    display: inline-block;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 24px; border-radius: 8px;
+    font-weight: 900; font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
+
+  /* PRODUCTS */
+  .products { background: var(--white); }
+
+  .filter-tabs {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .tab {
+    padding: 8px 20px; border-radius: 24px;
+    border: 2px solid #e2e8f0;
+    background: none; cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--muted); transition: all 0.2s;
+  }
+
+  .tab.active, .tab:hover {
+    background: var(--navy); border-color: var(--navy);
+    color: var(--white);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: var(--white);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(10,22,40,0.12);
+  }
+
+  .product-header {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 2rem; text-align: center; font-size: 2.5rem;
+  }
+
+  .product-body { padding: 1.2rem; }
+
+  .product-cat {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 0.3rem;
+  }
+
+  .product-name {
+    font-size: 1rem; font-weight: 900; color: var(--navy);
+    margin-bottom: 0.8rem;
+  }
+
+  .product-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .tag {
+    background: var(--light); color: var(--muted);
+    font-size: 0.75rem; padding: 3px 10px; border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* VALUES */
+  .values { background: var(--navy); }
+  .values .section-title { color: var(--white); }
+  .values .section-label { color: var(--gold); }
+
+  .values-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .value-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 1.8rem; text-align: center;
+    transition: background 0.2s;
+  }
+
+  .value-card:hover { background: rgba(255,255,255,0.1); }
+
+  .value-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+  .value-title { font-size: 1rem; font-weight: 900; color: var(--gold); margin-bottom: 0.5rem; }
+  .value-desc { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  /* AGENTS */
+  .agents { background: var(--light); }
+
+  .agents-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; margin-top: 3rem;
+  }
+
+  .agent-card {
+    background: var(--white);
+    border-radius: 12px; padding: 2rem;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(10,22,40,0.08);
+  }
+
+  .agent-badge {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .agent-name { font-size: 1.2rem; font-weight: 900; color: var(--navy); margin-bottom: 0.3rem; }
+  .agent-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.2rem; }
+
+  .agent-info { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .agent-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; color: var(--text);
+  }
+
+  /* MESSAGE */
+  .message {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    text-align: center; color: var(--white);
+  }
+
+  .message blockquote {
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 700; color: var(--gold);
+    font-style: normal; line-height: 1.6;
+    max-width: 700px; margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 12px;
+  }
+
+  .message p { color: rgba(255,255,255,0.75); line-height: 1.8; max-width: 600px; margin: 0 auto 1rem; }
+
+  /* FOOTER */
+  footer {
+    background: #060e1a;
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 5%;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 1.5rem; font-weight: 900; color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { color: var(--gold); font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .footer-copy { font-size: 0.8rem; margin-top: 1.5rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .about-grid, .agents-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>DELTA</span> للتجارة والصناعة</div>
+  <ul class="nav-links">
+    <li><a href="#products">المنتجات</a></li>
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#values">قيمنا</a></li>
+    <li><a href="#agents">الوكلاء</a></li>
+    <li><a href="#message">كلمة الإدارة</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">متخصصون في الأدوات الصحية البلاستيكية</div>
+    <h1>دلتا للتجارة<br><span>والصناعة</span></h1>
+    <p>نصنع منتجات بلاستيكية متخصصة للأدوات الصحية بأعلى معايير الجودة والكفاءة، جامعين الخبرة الصناعية بالتكنولوجيا الحديثة.</p>
+    <a href="#products" class="btn">استكشف منتجاتنا</a>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">جودة مضمونة</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">سنوات ضمان</div></div>
+      <div class="stat"><div class="stat-num">2+</div><div class="stat-label">وكيل معتمد</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">من نحن</div>
+  <h2 class="section-title">نصنع الجودة في كل تفصيلة</h2>
+  <div class="about-grid">
+    <div class="about-features">
+      <div class="feature"><span class="feature-icon">🏭</span><p>خبرة متخصصة في تصنيع المنتجات البلاستيكية للأدوات الصحية</p></div>
+      <div class="feature"><span class="feature-icon">🔍</span><p>اهتمام دقيق بأدق التفاصيل لضمان أعلى مستويات الجودة</p></div>
+      <div class="feature"><span class="feature-icon">💡</span><p>تطوير مستمر للمنتجات بما يتوافق مع متطلبات السوق الحديثة</p></div>
+      <div class="feature"><span class="feature-icon">⚗️</span><p>استخدام خامات عالية الجودة وتقنيات تصنيع متطورة</p></div>
+      <div class="feature"><span class="feature-icon">🤝</span><p>الالتزام بمواعيد التوريد وخدمة العملاء باحترافية عالية</p></div>
+    </div>
+    <div class="about-card">
+      <h3>رؤيتنا</h3>
+      <p>أن نكون من الشركات الرائدة في صناعة المنتجات البلاستيكية للأدوات الصحية على المستوى المحلي والإقليمي، وأن نصبح الخيار الأول من خلال الابتكار المستمر والجودة الفائقة.</p>
+      <div class="iso-badge">🏆 ISO معايير جودة دولية</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-label">كتالوج المنتجات</div>
+  <h2 class="section-title">منتجاتنا</h2>
+  <p class="section-sub">تشكيلة متكاملة من الأدوات الصحية البلاستيكية بأعلى معايير الجودة</p>
+
+  <div class="products-grid" style="margin-top:2rem;">
+    <div class="product-card">
+      <div class="product-header">💧</div>
+      <div class="product-body">
+        <div class="product-cat">سيفونات</div>
+        <div class="product-name">سيفون أبيض / رمادي 1.5"</div>
+        <div class="product-tags"><span class="tag">1.5 بوصة</span><span class="tag">PVC</span><span class="tag">للأحواض</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">💧</div>
+      <div class="product-body">
+        <div class="product-cat">سيفونات</div>
+        <div class="product-name">سيفون أبيض / رمادي 2"</div>
+        <div class="product-tags"><span class="tag">2 بوصة</span><span class="tag">PVC</span><span class="tag">للمغاسل</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🔩</div>
+      <div class="product-body">
+        <div class="product-cat">سيفونات</div>
+        <div class="product-name">سيفون 3" — مسمار انيه</div>
+        <div class="product-tags"><span class="tag">3 بوصة</span><span class="tag">ستانلس</span><span class="tag">مقاوم للصدأ</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🥉</div>
+      <div class="product-body">
+        <div class="product-cat">سيفونات</div>
+        <div class="product-name">سيفون 3" — مسمار نحاس</div>
+        <div class="product-tags"><span class="tag">3 بوصة</span><span class="tag">نحاس</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🧺</div>
+      <div class="product-body">
+        <div class="product-cat">سيفونات</div>
+        <div class="product-name">سيفون سلة Alpha 3"</div>
+        <div class="product-tags"><span class="tag">Alpha</span><span class="tag">عادي</span><span class="tag">3 بوصة</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">⭐</div>
+      <div class="product-body">
+        <div class="product-cat">سيفونات</div>
+        <div class="product-name">سيفون سلة Gamma 3"</div>
+        <div class="product-tags"><span class="tag">Gamma</span><span class="tag">لوكس</span><span class="tag">3 بوصة</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🔧</div>
+      <div class="product-body">
+        <div class="product-cat">مانيجة</div>
+        <div class="product-name">مانيجة Alpha قصيرة — Pro</div>
+        <div class="product-tags"><span class="tag">Alpha</span><span class="tag">Pro</span><span class="tag">قصيرة</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🔧</div>
+      <div class="product-body">
+        <div class="product-cat">مانيجة</div>
+        <div class="product-name">مانيجة Gamma طويلة — Pro</div>
+        <div class="product-tags"><span class="tag">Gamma</span><span class="tag">Pro</span><span class="tag">طويلة</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">⭐</div>
+      <div class="product-body">
+        <div class="product-cat">مانيجة</div>
+        <div class="product-name">مانيجة Alpha قصيرة — Prime</div>
+        <div class="product-tags"><span class="tag">Alpha</span><span class="tag">Prime</span><span class="tag">قصيرة</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">⭐</div>
+      <div class="product-body">
+        <div class="product-cat">مانيجة</div>
+        <div class="product-name">مانيجة Gamma طويلة — Prime</div>
+        <div class="product-tags"><span class="tag">Gamma</span><span class="tag">Prime</span><span class="tag">طويلة</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🔩</div>
+      <div class="product-body">
+        <div class="product-cat">لوازم أخرى</div>
+        <div class="product-name">لي — صامولة بلاستيك 1.25"</div>
+        <div class="product-tags"><span class="tag">1.25 بوصة</span><span class="tag">بلاستيك</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🔩</div>
+      <div class="product-body">
+        <div class="product-cat">لوازم أخرى</div>
+        <div class="product-name">لي — صامولة بلاستيك 1.5"</div>
+        <div class="product-tags"><span class="tag">1.5 بوصة</span><span class="tag">بلاستيك</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🥉</div>
+      <div class="product-body">
+        <div class="product-cat">لوازم أخرى</div>
+        <div class="product-name">لي — صامولة نحاس 1.25"</div>
+        <div class="product-tags"><span class="tag">1.25 بوصة</span><span class="tag">نحاس</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🥉</div>
+      <div class="product-body">
+        <div class="product-cat">لوازم أخرى</div>
+        <div class="product-name">لي — صامولة نحاس 1.5"</div>
+        <div class="product-tags"><span class="tag">1.5 بوصة</span><span class="tag">نحاس</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🥉</div>
+      <div class="product-body">
+        <div class="product-cat">لوازم أخرى</div>
+        <div class="product-name">كوع بانيو شاسيه — نحاس 1.5"</div>
+        <div class="product-tags"><span class="tag">1.5 بوصة</span><span class="tag">شاسيه</span><span class="tag">نحاس</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">⚙️</div>
+      <div class="product-body">
+        <div class="product-cat">لوازم أخرى</div>
+        <div class="product-name">كوع بانيو شاسيه — بلاستيك 1.5"</div>
+        <div class="product-tags"><span class="tag">1.5 بوصة</span><span class="tag">شاسيه</span><span class="tag">بلاستيك</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🚿</div>
+      <div class="product-body">
+        <div class="product-cat">شطافات</div>
+        <div class="product-name">شطاف أبيض — Basic</div>
+        <div class="product-tags"><span class="tag">Basic</span><span class="tag">أبيض</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">✨</div>
+      <div class="product-body">
+        <div class="product-cat">شطافات</div>
+        <div class="product-name">شطاف نيكل — Advanced</div>
+        <div class="product-tags"><span class="tag">Advanced</span><span class="tag">نيكل</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">🤚</div>
+      <div class="product-body">
+        <div class="product-cat">شطافات</div>
+        <div class="product-name">يد شطاف أبيض — Basic</div>
+        <div class="product-tags"><span class="tag">Basic</span><span class="tag">أبيض</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-header">✨</div>
+      <div class="product-body">
+        <div class="product-cat">شطافات</div>
+        <div class="product-name">يد شطاف نيكل — Advanced</div>
+        <div class="product-tags"><span class="tag">Advanced</span><span class="tag">نيكل</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values" id="values">
+  <div class="section-label">ما نؤمن به</div>
+  <h2 class="section-title">قيمنا</h2>
+  <div class="values-grid">
+    <div class="value-card"><div class="value-icon">🏆</div><div class="value-title">الجودة أولاً</div><div class="value-desc">الالتزام بأعلى معايير الجودة في جميع مراحل الإنتاج</div></div>
+    <div class="value-card"><div class="value-icon">💡</div><div class="value-title">الابتكار</div><div class="value-desc">البحث المستمر عن حلول أكثر كفاءة وتميزاً</div></div>
+    <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">الاحترافية</div><div class="value-desc">تنفيذ الأعمال بدقة وشفافية ومصداقية عالية</div></div>
+    <div class="value-card"><div class="value-icon">⭐</div><div class="value-title">رضا العملاء</div><div class="value-desc">وضع احتياجات العملاء في مقدمة أولوياتنا</div></div>
+    <div class="value-card"><div class="value-icon">♻️</div><div class="value-title">الاستدامة</div><div class="value-desc">تحسين العمليات لتحقيق أفضل كفاءة وجودة ممكنة</div></div>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section class="agents" id="agents">
+  <div class="section-label">شركاؤنا</div>
+  <h2 class="section-title">الوكلاء المعتمدون</h2>
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-badge">الوكيل المعتمد</div>
+      <div class="agent-name">شركة عبدالعزيز رافت</div>
+      <div class="agent-sub">للأدوات الصحية</div>
+      <div class="agent-info">
+        <div class="agent-row">📍 الروضة - طلخا - دقهلية</div>
+        <div class="agent-row">📞 01033312126</div>
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-badge">الوكيل المعتمد</div>
+      <div class="agent-name">شركة الأمين</div>
+      <div class="agent-sub">للتوكيلات التجارية</div>
+      <div class="agent-info">
+        <div class="agent-row">📍 الفجالة 9 - شارع الظاهر</div>
+        <div class="agent-row">📞 025933650</div>
+        <div class="agent-row">📞 027879704</div>
+        <div class="agent-row">📞 01226777498</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="message" id="message">
+  <div class="section-label" style="color:var(--gold)">كلمة الإدارة</div>
+  <h2 class="section-title" style="color:var(--white)">رسالة رئيس مجلس الإدارة</h2>
+  <blockquote>"الجودة ليست هدفاً نسعى إليه فحسب، بل هي أساس كل ما نقوم به"</blockquote>
+  <p>منذ انطلاق الشركة، وضعنا هدفاً واضحاً يتمثل في تقديم منتجات بلاستيكية متخصصة في مجال الأدوات الصحية تتميز بالجودة العالية والاعتمادية والابتكار، مع التركيز على أدق التفاصيل التي تصنع الفارق الحقيقي.</p>
+  <p>إننا ننظر إلى المستقبل برؤية طموحة ترتكز على الاستثمار في التكنولوجيا الحديثة وتطوير الكفاءات البشرية والارتقاء بعمليات التصنيع.</p>
+  <p style="color:var(--gold);font-weight:700;margin-top:1rem;">— رئيس مجلس الإدارة، DELTA Trading & Industry</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>DELTA</span> للتجارة والصناعة</div>
+  <div class="footer-tagline">دلتا .. الثقة في كل تفاصيل</div>
+  <p>شركة متخصصة في تصميم وتطوير وتصنيع المنتجات البلاستيكية الخاصة بقطاع الأدوات الصحية.</p>
+  <div class="footer-copy">© 2025–2026 DELTA Trading & Industry. جميع الحقوق محفوظة.</div>
+</footer>
+
+</body>
+</html>
